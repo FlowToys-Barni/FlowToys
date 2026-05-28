@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowToys - Segítő Játékok</title>
+    <title>FlowToys - Segítő Játékok Különleges Gyermekeknek</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fredoka:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- Alapbeállítások --- */
+        /* --- Alapbeállítások és Lágy Formák --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Fredoka', sans-serif; /* Barátságosabb, kerekített betűtípus */
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #f7f9fc;
-            color: #333;
+            background-color: #f0f4f9;
+            color: #2c3e50;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* --- Fejléc és Animált Logó --- */
         header {
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            position: sticky;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .header-container {
@@ -40,323 +46,117 @@
             align-items: center;
         }
 
-        /* --- Logó Szivárványos Fénygyűrűvel --- */
         .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        /* Ha a logó fölé viszed a kurzort, finoman megmozdul */
+        .logo-container:hover {
+            transform: scale(1.05) rotate(-2deg);
         }
 
         .logo-ring {
-            width: 60px;
-            height: 60px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #fff;
             position: relative;
-            /* Szivárványos fénygyűrű effekt */
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
         }
 
+        /* Szivárványos gyűrű */
         .logo-ring::before {
             content: '';
             position: absolute;
             top: -4px; left: -4px; right: -4px; bottom: -4px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background: linear-gradient(45deg, #ff7675, #fab1a0, #ffeaa7, #55efc4, #81ecec, #74b9ff, #a29bfe);
             z-index: -1;
-            animation: rotateRing 4s linear infinite;
+            animation: rotateRing 6s linear infinite;
         }
 
         .logo-text {
             font-family: 'Dancing Script', cursive;
-            font-size: 28px;
-            color: #333;
+            font-size: 32px;
+            color: #2c3e50;
             font-weight: bold;
-            line-height: 1;
             padding-bottom: 5px;
         }
 
         .brand-name {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 600;
-            color: #2c3e50;
+            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* --- Főoldal Hőse (Hero) szekció --- */
+        /* --- Óriási Főoldal (Hero Szekció) --- */
         .hero {
-            background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 100%);
-            padding: 80px 20px;
+            min-height: 100vh;
+            background: radial-gradient(circle at top right, #e0f2fe 0%, #e0e7ff 50%, #f3e8ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px 20px;
             text-align: center;
+            position: relative;
         }
+
+        /* Kis dekoratív lebegő háttér-buborékok a részletgazdagságért */
+        .hero::before, .hero::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            filter: blur(20px);
+            z-index: 1;
+            animation: floatBubble 8s ease-in-out infinite;
+        }
+        .hero::before { width: 150px; height: 150px; top: 20%; left: 10%; }
+        .hero::after { width: 250px; height: 250px; bottom: 15%; right: 10%; animation-delay: 2s; }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 42px;
-            color: #1e3a8a;
-            margin-bottom: 20px;
+            font-size: 52px;
+            color: #1e293b;
+            margin-bottom: 25px;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 18px;
-            color: #4b5563;
-            margin-bottom: 30px;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            background-color: #3b82f6;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
-        }
-
-        .cta-btn:hover {
-            background-color: #2563eb;
-            transform: translateY(-2px);
-        }
-
-        /* --- Felfedezés (Explore) Szekció --- */
-        .explore-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            color: #1f2937;
-            margin-bottom: 40px;
-        }
-
-        .toys-grid {
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Játékkártya */
-        .toy-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            width: 350px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.3s;
-        }
-
-        .toy-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .toy-image-placeholder {
-            height: 220px;
-            background: linear-gradient(45deg, #f3e8ff, #fae8ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        /* Slinky (Rugó) Grafika CSS-szel */
-        .slinky-graphic {
-            width: 80px;
-            height: 80px;
-            border: 8px double #a855f7;
-            border-radius: 50%;
-            animation: bounceSlinky 2s infinite ease-in-out;
-        }
-
-        .toy-info {
-            padding: 25px;
-        }
-
-        .toy-title {
-            font-size: 22px;
-            color: #111827;
-            margin-bottom: 10px;
-        }
-
-        .toy-price {
             font-size: 20px;
-            font-weight: 600;
-            color: #059669;
-            margin-bottom: 15px;
+            color: #64748b;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .learn-more-btn {
-            display: block;
-            width: 100%;
-            background-color: #f3f4f6;
-            color: #1f2937;
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px;
+        /* Gombok elrendezése */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            border-radius: 50px; /* Teljesen kerekített gomb sarkok */
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .learn-more-btn:hover {
-            background-color: #e5e7eb;
-        }
-
-        /* --- Modális ablak (Leírás felugró) --- */
-        .modal {
-            display: none; /* Alapértelmezetten rejtve */
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
-            position: relative;
-            animation: slideIn 0.3s ease-out;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 28px;
-            color: #9ca3af;
-            cursor: pointer;
-        }
-
-        .close-btn:hover {
-            color: #374151;
-        }
-
-        .modal h3 {
-            font-size: 24px;
-            color: #1e3a8a;
-            margin-bottom: 15px;
-        }
-
-        .modal p {
-            color: #4b5563;
-            margin-bottom: 15px;
-        }
-
-        /* --- Animációk --- */
-        @keyframes rotateRing {
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes bounceSlinky {
-            0%, 100% { transform: scaleY(1) translateY(0); }
-            50% { transform: scaleY(0.7) translateY(20px); border-color: #ec4899; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            background-color: #1f2937;
-            color: #9ca3af;
-            margin-top: 80px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="header-container">
-            <div class="logo-container">
-                <div class="logo-ring">
-                    <span class="logo-text">FL</span>
-                </div>
-                <span class="brand-name">FlowToys</span>
-            </div>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Különleges játékok, különleges gyermekeknek</h1>
-            <p>Küldetésünk, hogy ADHD-val, tartós betegséggel vagy fogyatékossággal élő gyermekek számára nyújtsunk olyan terápiás és megnyugtató eszközöket, amelyek segítenek a mindennapi stressz és a szorongás leküzdésében.</p>
-            <a href="#explore" class="cta-btn">Játékok felfedezése</a>
-        </div>
-    </section>
-
-    <section class="explore-section" id="explore">
-        <h2 class="section-title">Fedezd fel a kínálatunkat</h2>
-        
-        <div class="toys-grid">
-            <div class="toy-card">
-                <div class="toy-image-placeholder">
-                    <div class="slinky-graphic"></div>
-                </div>
-                <div class="toy-info">
-                    <h3 class="toy-title">Varázs Slinky (Mágikus Rugó)</h3>
-                    <p class="toy-price">700 HUF</p>
-                    <button class="learn-more-btn" onclick="openModal()">Tudj meg többet</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="modal" id="toyModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3>Hogyan segít a Varázs Slinky?</h3>
-            <p>A Slinky (mágikus rugó) egy fantasztikus ritmikus és taktilis eszköz, amelyet kifejezetten a figyelmi nehézségekkel (ADHD) küzdő, tartósan beteg vagy fogyatékossággal élő gyermekek megnyugtatására fejlesztettek ki.</p>
-            <p><strong>Főbb előnyei:</strong></p>
-            <p>• <strong>Stresszoldás és nyugalom:</strong> A rugó ritmikus mozgatása a kezek között bizonyítottan csökkenti a szorongást és segít levezetni a felgyülemlett belső feszültséget.</p>
-            <p>• <strong>Fókusz javítása:</strong> Leköti a felesleges energiákat, így a gyerekek könnyebben tudnak egy adott feladatra koncentrálni.</p>
-            <p>• <strong>Szenzoros fejlesztés:</strong> A lágy, hullámzó mozgás látványa és tapintása megnyugtató környezetet teremt a túlterhelt idegrendszer számára.</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 FlowToys - Szeretettel és odafigyeléssel.</p>
-    </footer>
-
-    <script>
-        const modal = document.getElementById('toyModal');
-
-        function openModal() {
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-
-        // Ha a felhasználó a modálison kívülre kattint, az is bezárja
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
-
-</body>
-</html>
