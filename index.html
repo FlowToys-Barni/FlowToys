@@ -1,472 +1,362 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlowToys</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Trebuchet MS', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowToys - Segítő Játékok</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Alapbeállítások --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        body {
+            background-color: #f7f9fc;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    body {
-      background: linear-gradient(180deg, #dff4ff 0%, #ffffff 50%, #f3e8ff 100%);
-      color: #333;
-      overflow-x: hidden;
-    }
+        header {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-    header {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 40px 20px;
-      position: relative;
-    }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    header::before {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: rgba(56, 189, 248, 0.2);
-      border-radius: 50%;
-      top: -150px;
-      left: -150px;
-      filter: blur(60px);
-    }
+        /* --- Logó Szivárványos Fénygyűrűvel --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    header::after {
-      content: "";
-      position: absolute;
-      width: 500px;
-      height: 500px;
-      background: rgba(168, 85, 247, 0.18);
-      border-radius: 50%;
-      bottom: -150px;
-      right: -150px;
-      filter: blur(60px);
-    }
+        .logo-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            position: relative;
+            /* Szivárványos fénygyűrű effekt */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
 
-    .badge {
-      position: relative;
-      z-index: 2;
-      display: inline-block;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      padding: 14px 24px;
-      border-radius: 999px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: #444;
-    }
+        .logo-ring::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            z-index: -1;
+            animation: rotateRing 4s linear infinite;
+        }
 
-    h1 {
-      position: relative;
-      z-index: 2;
-      font-size: 90px;
-      font-weight: 900;
-      margin-bottom: 25px;
-      color: #111827;
-      text-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #333;
+            font-weight: bold;
+            line-height: 1;
+            padding-bottom: 5px;
+        }
 
-    .hero-text {
-      position: relative;
-      z-index: 2;
-      max-width: 850px;
-      font-size: 25px;
-      line-height: 1.7;
-      color: #555;
-    }
+        .brand-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
 
-    .buttons {
-      position: relative;
-      z-index: 2;
-      margin-top: 45px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
+        /* --- Főoldal Hőse (Hero) szekció --- */
+        .hero {
+            background: linear-gradient(135deg, #e0f2fe 0%, #e0e7ff 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
 
-    .buttons button {
-      padding: 18px 34px;
-      border: none;
-      border-radius: 18px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .primary {
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: white;
-    }
+        .hero h1 {
+            font-size: 42px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
 
-    .secondary {
-      background: white;
-      color: #333;
-    }
+        .hero p {
+            font-size: 18px;
+            color: #4b5563;
+            margin-bottom: 30px;
+        }
 
-    .buttons button:hover {
-      transform: translateY(-4px) scale(1.03);
-    }
+        .cta-btn {
+            display: inline-block;
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
 
-    section {
-      padding: 100px 20px;
-    }
+        .cta-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
 
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
+        /* --- Felfedezés (Explore) Szekció --- */
+        .explore-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
 
-    .about {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 50px;
-      align-items: center;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #1f2937;
+            margin-bottom: 40px;
+        }
 
-    .about h2,
-    .featured h2,
-    .testimonials h2 {
-      font-size: 54px;
-      margin-bottom: 25px;
-      color: #111827;
-    }
+        .toys-grid {
+            display: flex;
+            justify-content: center;
+        }
 
-    .about p {
-      font-size: 20px;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 18px;
-    }
+        /* Játékkártya */
+        .toy-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 350px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s;
+        }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+        .toy-card:hover {
+            transform: translateY(-5px);
+        }
 
-    .feature-box {
-      padding: 35px;
-      border-radius: 30px;
-      text-align: center;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-      transition: 0.3s ease;
-    }
+        .toy-image-placeholder {
+            height: 220px;
+            background: linear-gradient(45deg, #f3e8ff, #fae8ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-    .feature-box:hover {
-      transform: translateY(-5px);
-    }
+        /* Slinky (Rugó) Grafika CSS-szel */
+        .slinky-graphic {
+            width: 80px;
+            height: 80px;
+            border: 8px double #a855f7;
+            border-radius: 50%;
+            animation: bounceSlinky 2s infinite ease-in-out;
+        }
 
-    .feature-box h3 {
-      font-size: 45px;
-      margin-bottom: 12px;
-    }
+        .toy-info {
+            padding: 25px;
+        }
 
-    .toy-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 35px;
-      margin-top: 60px;
-    }
+        .toy-title {
+            font-size: 22px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
 
-    .toy-card {
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      padding: 40px;
-      border-radius: 32px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-      transition: all 0.3s ease;
-    }
+        .toy-price {
+            font-size: 20px;
+            font-weight: 600;
+            color: #059669;
+            margin-bottom: 15px;
+        }
 
-    .toy-card:hover {
-      transform: translateY(-10px) rotate(-1deg);
-    }
+        .learn-more-btn {
+            display: block;
+            width: 100%;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+        }
 
-    .toy-card .emoji {
-      font-size: 75px;
-      margin-bottom: 20px;
-    }
+        .learn-more-btn:hover {
+            background-color: #e5e7eb;
+        }
 
-    .toy-card h3 {
-      font-size: 32px;
-      margin-bottom: 15px;
-      color: #111827;
-    }
+        /* --- Modális ablak (Leírás felugró) --- */
+        .modal {
+            display: none; /* Alapértelmezetten rejtve */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
 
-    .toy-card p {
-      color: #666;
-      line-height: 1.7;
-      font-size: 18px;
-    }
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 25px rgba(0,0,0,0.15);
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+        }
 
-    .toy-card button {
-      margin-top: 28px;
-      padding: 14px 26px;
-      border: none;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #111827, #374151);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            color: #9ca3af;
+            cursor: pointer;
+        }
 
-    .toy-card button:hover {
-      transform: scale(1.05);
-    }
+        .close-btn:hover {
+            color: #374151;
+        }
 
-    .testimonials {
-      text-align: center;
-    }
+        .modal h3 {
+            font-size: 24px;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
 
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-top: 60px;
-    }
+        .modal p {
+            color: #4b5563;
+            margin-bottom: 15px;
+        }
 
-    .testimonial {
-      padding: 40px;
-      border-radius: 32px;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-      text-align: left;
-    }
+        /* --- Animációk --- */
+        @keyframes rotateRing {
+            100% { transform: rotate(360deg); }
+        }
 
-    .testimonial p {
-      font-size: 21px;
-      font-style: italic;
-      line-height: 1.8;
-      margin-bottom: 18px;
-      color: #444;
-    }
+        @keyframes bounceSlinky {
+            0%, 100% { transform: scaleY(1) translateY(0); }
+            50% { transform: scaleY(0.7) translateY(20px); border-color: #ec4899; }
+        }
 
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-    }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-    footer h2 {
-      font-size: 44px;
-      margin-bottom: 12px;
-      color: #111827;
-    }
-
-    footer p {
-      color: #666;
-      font-size: 18px;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 58px;
-      }
-
-      .hero-text {
-        font-size: 20px;
-      }
-
-      .about h2,
-      .featured h2,
-      .testimonials h2 {
-        font-size: 40px;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-    }
-  
-
-    .logo-wrap {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 999;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .logo-ring {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: conic-gradient(red, orange, yellow, lime, cyan, blue, violet, red);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: spin 5s linear infinite;
-      box-shadow: 0 0 30px rgba(255,255,255,0.9);
-    }
-
-    .logo-text {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 34px;
-      font-weight: bold;
-      font-family: cursive;
-      color: #111827;
-    }
-
-    .logo-name {
-      font-size: 32px;
-      font-weight: 900;
-      background: linear-gradient(90deg,#38bdf8,#a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-  </style>
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #1f2937;
+            color: #9ca3af;
+            margin-top: 80px;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="logo-wrap">
-    <div class="logo-ring">
-      <div class="logo-text">FL</div>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <div class="logo-ring">
+                    <span class="logo-text">FL</span>
+                </div>
+                <span class="brand-name">FlowToys</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Különleges játékok, különleges gyermekeknek</h1>
+            <p>Küldetésünk, hogy ADHD-val, tartós betegséggel vagy fogyatékossággal élő gyermekek számára nyújtsunk olyan terápiás és megnyugtató eszközöket, amelyek segítenek a mindennapi stressz és a szorongás leküzdésében.</p>
+            <a href="#explore" class="cta-btn">Játékok felfedezése</a>
+        </div>
+    </section>
+
+    <section class="explore-section" id="explore">
+        <h2 class="section-title">Fedezd fel a kínálatunkat</h2>
+        
+        <div class="toys-grid">
+            <div class="toy-card">
+                <div class="toy-image-placeholder">
+                    <div class="slinky-graphic"></div>
+                </div>
+                <div class="toy-info">
+                    <h3 class="toy-title">Varázs Slinky (Mágikus Rugó)</h3>
+                    <p class="toy-price">700 HUF</p>
+                    <button class="learn-more-btn" onclick="openModal()">Tudj meg többet</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="toyModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Hogyan segít a Varázs Slinky?</h3>
+            <p>A Slinky (mágikus rugó) egy fantasztikus ritmikus és taktilis eszköz, amelyet kifejezetten a figyelmi nehézségekkel (ADHD) küzdő, tartósan beteg vagy fogyatékossággal élő gyermekek megnyugtatására fejlesztettek ki.</p>
+            <p><strong>Főbb előnyei:</strong></p>
+            <p>• <strong>Stresszoldás és nyugalom:</strong> A rugó ritmikus mozgatása a kezek között bizonyítottan csökkenti a szorongást és segít levezetni a felgyülemlett belső feszültséget.</p>
+            <p>• <strong>Fókusz javítása:</strong> Leköti a felesleges energiákat, így a gyerekek könnyebben tudnak egy adott feladatra koncentrálni.</p>
+            <p>• <strong>Szenzoros fejlesztés:</strong> A lágy, hullámzó mozgás látványa és tapintása megnyugtató környezetet teremt a túlterhelt idegrendszer számára.</p>
+        </div>
     </div>
-    <h2 class="logo-name">FlowToys</h2>
-  </div>
 
-  <header>
-    <div class="badge">✨ Nyugalom • Fókusz • Szórakozás</div>
+    <footer>
+        <p>&copy; 2026 FlowToys - Szeretettel és odafigyeléssel.</p>
+    </footer>
 
-    <h1>FlowToys</h1>
+    <script>
+        const modal = document.getElementById('toyModal');
 
-    <p class="hero-text">
-      Játékok, amelyek segítenek a gyerekeknek nyugodtnak, kreatívnak és boldognak maradni. Kifejezetten ADHD-s, autista és érzékeny gyerekek számára készítve.
-    </p>
+        function openModal() {
+            modal.style.display = 'flex';
+        }
 
-    <div class="buttons">
-      <a href="#shop"><button class="primary">Játékok Felfedezése</button></a>
-      <a href="#about-flow"><button class="secondary">Tudj Meg Többet</button></a>
-    </div>
-  </header>
+        function closeModal() {
+            modal.style.display = 'none';
+        }
 
-  <section id="about-flow">
-    <div class="container about">
-      <div>
-        <h2>Miért a FlowToys?</h2>
-
-        <p>
-          Every child experiences the world differently. FlowToys creates
-          sensory-friendly toys that encourage focus, emotional comfort,
-          movement, and creativity.
-        </p>
-
-        <p>
-          Küldetésünk, hogy segítsünk a fogyatékkal élő, ADHD-s, autista vagy szorongó gyerekeknek nyugodtabbnak és biztonságban érezni magukat játékos módon. Azt szeretnénk, hogy minden gyermek elfogadottnak érezze magát.
-        </p>
-      </div>
-
-      <div class="features">
-        <div class="feature-box">
-          <h3>🎨</h3>
-          <strong>Kreatív Játék</strong>
-        </div>
-
-        <div class="feature-box">
-          <h3>🧠</h3>
-          <strong>Fókusz Segítés</strong>
-        </div>
-
-        <div class="feature-box">
-          <h3>💛</h3>
-          <strong>Érzelmi Nyugalom</strong>
-        </div>
-
-        <div class="feature-box">
-          <h3>🌈</h3>
-          <strong>Szenzorbarát</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="featured" id="shop">
-    <div class="container">
-      <h2 style="text-align:center;">Kiemelt Játékok</h2>
-
-      <div class="toy-grid">
-        <div class="toy-card">
-          <div class="emoji">🪀</div>
-          <h3>Slingy</h3>
-          <p>
-            A soft colorful sensory slingy toy made for stretching, movement,
-            focus, and calming busy hands.
-          </p>
-
-          <h4 style="margin-top:20px; font-size:28px; color:#0ea5e9;">700 HUF</h4>
-
-          <button onclick="buyToy()">Buy Now</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    function buyToy() {
-      alert("Thanks for checking out the Slingy toy! 🪀");
-    }
-  </script>
-
-  <section class="testimonials">
-    <div class="container">
-      <h2>A Családok Imádják a FlowToys-t</h2>
-
-      <div class="testimonial-grid">
-        <div class="testimonial">
-          <p>
-            “My son finally found something that helps him stay calm during homework time.”
-          </p>
-          <strong>— Sarah, Parent</strong>
-        </div>
-
-        <div class="testimonial">
-          <p>
-            “These toys are fun without being overwhelming. Huge win for our family.”
-          </p>
-          <strong>— Daniel, Parent</strong>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <h2>FlowToys</h2>
-    <p>Segítünk a gyerekeknek nyugodtnak, fókuszáltnak és boldognak maradni.</p>
-  </footer>
+        // Ha a felhasználó a modálison kívülre kattint, az is bezárja
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
 
 </body>
 </html>
