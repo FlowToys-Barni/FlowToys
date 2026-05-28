@@ -297,30 +297,87 @@
         grid-template-columns: 1fr;
       }
     }
+  
+
+    .logo-wrap {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-ring {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: conic-gradient(red, orange, yellow, lime, cyan, blue, violet, red);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: spin 5s linear infinite;
+      box-shadow: 0 0 30px rgba(255,255,255,0.9);
+    }
+
+    .logo-text {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 34px;
+      font-weight: bold;
+      font-family: cursive;
+      color: #111827;
+    }
+
+    .logo-name {
+      font-size: 32px;
+      font-weight: 900;
+      background: linear-gradient(90deg,#38bdf8,#a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
   </style>
 </head>
 <body>
 
+  <div class="logo-wrap">
+    <div class="logo-ring">
+      <div class="logo-text">FL</div>
+    </div>
+    <h2 class="logo-name">FlowToys</h2>
+  </div>
+
   <header>
-    <div class="badge">✨ Comfort • Focus • Fun</div>
+    <div class="badge">✨ Nyugalom • Fókusz • Szórakozás</div>
 
     <h1>FlowToys</h1>
 
     <p class="hero-text">
-      Toys made to help kids feel calm, creative, and understood.
-      Designed especially for children with ADHD, anxiety, and sensory needs.
+      Játékok, amelyek segítenek a gyerekeknek nyugodtnak, kreatívnak és boldognak maradni. Kifejezetten ADHD-s, autista és érzékeny gyerekek számára készítve.
     </p>
 
     <div class="buttons">
-      <a href="#shop"><button class="primary">Explore Toys</button></a>
-      <a href="#about-flow"><button class="secondary">Learn More</button></a>
+      <a href="#shop"><button class="primary">Játékok Felfedezése</button></a>
+      <a href="#about-flow"><button class="secondary">Tudj Meg Többet</button></a>
     </div>
   </header>
 
   <section id="about-flow">
     <div class="container about">
       <div>
-        <h2>Why FlowToys?</h2>
+        <h2>Miért a FlowToys?</h2>
 
         <p>
           Every child experiences the world differently. FlowToys creates
@@ -336,22 +393,22 @@
       <div class="features">
         <div class="feature-box">
           <h3>🎨</h3>
-          <strong>Creative Play</strong>
+          <strong>Kreatív Játék</strong>
         </div>
 
         <div class="feature-box">
           <h3>🧠</h3>
-          <strong>Focus Support</strong>
+          <strong>Fókusz Segítés</strong>
         </div>
 
         <div class="feature-box">
           <h3>💛</h3>
-          <strong>Emotional Comfort</strong>
+          <strong>Érzelmi Nyugalom</strong>
         </div>
 
         <div class="feature-box">
           <h3>🌈</h3>
-          <strong>Sensory Friendly</strong>
+          <strong>Szenzorbarát</strong>
         </div>
       </div>
     </div>
@@ -359,7 +416,7 @@
 
   <section class="featured" id="shop">
     <div class="container">
-      <h2 style="text-align:center;">Featured Toys</h2>
+      <h2 style="text-align:center;">Kiemelt Játékok</h2>
 
       <div class="toy-grid">
         <div class="toy-card">
@@ -386,7 +443,7 @@
 
   <section class="testimonials">
     <div class="container">
-      <h2>Families Love FlowToys</h2>
+      <h2>A Családok Imádják a FlowToys-t</h2>
 
       <div class="testimonial-grid">
         <div class="testimonial">
@@ -408,7 +465,7 @@
 
   <footer>
     <h2>FlowToys</h2>
-    <p>Helping kids feel calm, focused, and happy.</p>
+    <p>Segítünk a gyerekeknek nyugodtnak, fókuszáltnak és boldognak maradni.</p>
   </footer>
 
 </body>
