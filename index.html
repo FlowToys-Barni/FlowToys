@@ -312,7 +312,7 @@
     </p>
 
     <div class="buttons">
-      <button class="primary">Explore Toys</button>
+      <a href="#shop"><button class="primary">Explore Toys</button></a>
       <button class="secondary">Learn More</button>
     </div>
   </header>
@@ -357,40 +357,32 @@
     </div>
   </section>
 
-  <section class="featured">
+  <section class="featured" id="shop">
     <div class="container">
       <h2 style="text-align:center;">Featured Toys</h2>
 
       <div class="toy-grid">
         <div class="toy-card">
-          <div class="emoji">🌀</div>
-          <h3>Glow Orbit</h3>
+          <div class="emoji">🪀</div>
+          <h3>Slingy</h3>
           <p>
-            A calming light spinner designed to help kids focus and relax.
+            A soft colorful sensory slingy toy made for stretching, movement,
+            focus, and calming busy hands.
           </p>
-          <button>Learn More</button>
-        </div>
 
-        <div class="toy-card">
-          <div class="emoji">☁️</div>
-          <h3>Cloud Cubes</h3>
-          <p>
-            Soft sensory cubes with textures and sounds for busy hands.
-          </p>
-          <button>Learn More</button>
-        </div>
+          <h4 style="margin-top:20px; font-size:28px; color:#0ea5e9;">700 HUF</h4>
 
-        <div class="toy-card">
-          <div class="emoji">🧸</div>
-          <h3>Focus Friend</h3>
-          <p>
-            A pocket-sized fidget buddy built for calming anxious energy.
-          </p>
-          <button>Learn More</button>
+          <button onclick="buyToy()">Buy Now</button>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    function buyToy() {
+      alert("Thanks for checking out the Slingy toy! 🪀");
+    }
+  </script>
 
   <section class="testimonials">
     <div class="container">
