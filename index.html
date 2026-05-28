@@ -1,0 +1,74 @@
+export default function FlowToysWebsite() {
+              <div className="rounded-2xl bg-green-100 p-6">
+                <h3 className="text-4xl mb-2">🌈</h3>
+                <p className="font-semibold">Sensory Friendly</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Toy Cards */}
+      <section className="px-6 py-20">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-5xl font-bold mb-4">Featured Toys</h2>
+            <p className="text-lg text-gray-600">
+              Built with comfort, movement, and joy in mind.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {toys.map((toy, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-[2rem] p-8 shadow-xl hover:-translate-y-2 transition-transform"
+              >
+                <div className="text-6xl mb-6">{toy.emoji}</div>
+                <h3 className="text-2xl font-bold mb-3">{toy.name}</h3>
+                <p className="text-gray-600 leading-relaxed">{toy.desc}</p>
+
+                <button className="mt-6 px-5 py-3 rounded-xl bg-gray-900 text-white font-medium hover:opacity-90">
+                  Learn More
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="px-6 py-20 bg-white/70 backdrop-blur-sm">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-5xl font-bold mb-12">Families Love FlowToys</h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-sky-50 rounded-[2rem] p-8 shadow-lg text-left">
+              <p className="text-lg italic leading-relaxed mb-4">
+                “My son finally found something that helps him stay calm during
+                homework time.”
+              </p>
+              <h4 className="font-bold">— Sarah, Parent</h4>
+            </div>
+
+            <div className="bg-purple-50 rounded-[2rem] p-8 shadow-lg text-left">
+              <p className="text-lg italic leading-relaxed mb-4">
+                “These toys are fun without being overwhelming. Huge win for our
+                family.”
+              </p>
+              <h4 className="font-bold">— Daniel, Parent</h4>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-6 py-10 text-center">
+        <h3 className="text-3xl font-black mb-2">FlowToys</h3>
+        <p className="text-gray-500">
+          Helping kids feel calm, focused, and happy.
+        </p>
+      </footer>
+    </div>
+  );
+}
